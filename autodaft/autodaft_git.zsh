@@ -18,17 +18,8 @@ prompt_precmd() {
     GITSTAT=$(git status 2>/dev/null)
     CURRENT_PATH="%B%F{cyan}%~$f$b"
     if [[ ! -z $(echo "$GITSTAT") ]]; then
-#        add_to_vcsed_project
-#    fi
-#    if [[ ! -z $(find -files0-from $AUTODAFT_CACHE_HOME/gitprojects -type d -wholename "$PWD") ]]; then
         CURRENT_PATH="%B%F{cyan}$(prompt_git_info)%f%b"
         print -P '$(prompt_git_diff_stat)$(prompt_git_state)'
-    fi
-}
-
-add_to_vcsed_project() {
-    if [[ $(cat $AUTODAFT_CACHE_HOME/gitprojects | grep -sc "${PWD//\/home\/ruts/}") -eq 0 ]]; then
-        echo -en "${PWD}\0" >> $AUTODAFT_CACHE_HOME/gitprojects
     fi
 }
 
@@ -42,8 +33,6 @@ prompt_git_diff_stat() {
     GD_INS=$(echo "$STAT" | grep -Eo "[[:digit:]]+ insertion" | awk -F " " '{print $1}');
     GD_DEL=$(echo "$STAT" | grep -Eo "[[:digit:]]+ deletion" | awk -F " " '{print $1}');
 
-    GIT_PROMPT_LINE_ADDED="%B%F{green}⇡%f%b"
-    GIT_PROMPT_LINE_REMOVED="%B%F{red}⇣%f%b"
 
     GD_STAT=""
     if [[ $GD_INS -gt 0 ]]; then
@@ -75,7 +64,8 @@ prompt_git_state() {
 
     GIT_PROMPT_DIRTY="%F{orange}●%f"
     GIT_PROMPT_CLEAN="%F{green}●%f"
-
+    GIT_PROMPT_LINE_ADDED="%B%F{green}⇡%f%b"
+    GIT_PROMPT_LINE_REMOVED="%B%F{red}⇣%f%b"
     GIT_PROMPT_UNTRACKED="%F{yellow}Untrk%f"
     GIT_PROMPT_ADDED="%F{green}Add%f"
     #GIT_PROMPT_ADDED="%B%F{green}▲%f%b"
