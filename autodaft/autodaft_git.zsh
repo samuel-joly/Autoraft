@@ -1,6 +1,4 @@
 #             
-export AUTODAFT_CACHE_HOME="$XDG_CACHE_HOME/zsh/autodaft"
-
 main() {
     [[ "$SSH_CONNECTION" != '' ]] && prompt_purity_username='%n@%m '
 
@@ -17,16 +15,12 @@ main() {
 }
 
 prompt_precmd() {
-GITSTAT=$(git status 2>/dev/null)
-    echo "git"
-else
-    echo "nogit"
-fi
+    GITSTAT=$(git status 2>/dev/null)
     CURRENT_PATH="%B%F{cyan}%~$f$b"
     if [[ ! -z $(echo "$GITSTAT") ]]; then
-        add_to_vcsed_project
-    fi
-    if [[ ! -z $(find -files0-from $AUTODAFT_CACHE_HOME/gitprojects -type d -wholename "$PWD") ]]; then
+#        add_to_vcsed_project
+#    fi
+#    if [[ ! -z $(find -files0-from $AUTODAFT_CACHE_HOME/gitprojects -type d -wholename "$PWD") ]]; then
         CURRENT_PATH="%B%F{cyan}$(prompt_git_info)%f%b"
         print -P '$(prompt_git_diff_stat)$(prompt_git_state)'
     fi

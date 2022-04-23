@@ -4,13 +4,13 @@
 autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
-source "$ZDOTDIR/autodaft/completion.zsh"
-
-setxkbmap -layout gb
+#keyboard layout -- to move to somewhere more fundamental in Xorg"
+#setxkbmap -layout gb
 
 # Aliases
 source "$XDG_CONFIG_HOME/aliases"
-source "$ZDOTDIR/autodaft.zsh"
+
+source "$ZDOTDIR/autodaft/init.zsh"
 
 #end=`date +%s%N`
 #echo Execution time was 0.000`expr $end - $start` second
