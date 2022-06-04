@@ -5,7 +5,7 @@ autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
 #keyboard layout -- to move to somewhere more fundamental in Xorg"
-#setxkbmap -layout gb
+setxkbmap -layout gb -option ctrl:nocaps
 
 # Aliases
 source "$XDG_CONFIG_HOME/aliases"

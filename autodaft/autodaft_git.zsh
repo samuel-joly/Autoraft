@@ -17,18 +17,14 @@ main() {
 prompt_precmd() {
     GITSTAT=$(git status 2>/dev/null)
     CURRENT_PATH="%B%F{cyan}%~$f$b"
-    if [[ ! -z $(echo "$GITSTAT") ]]; then
-        CURRENT_PATH="%B%F{cyan}$(prompt_git_info)%f%b"
-        print -P '$(prompt_git_diff_stat)$(prompt_git_state)'
+    if [[ ! -z "$vcs_info_msg_0_" ]]; then
+        CURRENT_PATH="%B%F{cyan}$vcs_info_msg_0_%f%b"
+        print -P '$(prompt_git_state)'
     fi
 }
 
-prompt_git_info() {
-    [ ! -z "$vcs_info_msg_0_" ] && echo "%B%F{magenta}$vcs_info_msg_0_%f%b"
-}
-
-
 prompt_git_diff_stat() {
+    local STAT GD_INS GD_DEL GD_STAT
     STAT=$(git diff --shortstat)
     GD_INS=$(echo "$STAT" | grep -Eo "[[:digit:]]+ insertion" | awk -F " " '{print $1}');
     GD_DEL=$(echo "$STAT" | grep -Eo "[[:digit:]]+ deletion" | awk -F " " '{print $1}');
@@ -41,7 +37,6 @@ prompt_git_diff_stat() {
     if [[ $GD_DEL -gt 0 ]]; then
         GD_STAT="$GD_STAT$GIT_PROMPT_LINE_REMOVED$GD_DEL"
     fi
-
     if [[ ! -z $GD_STAT ]]; then
         echo "%B[%b$GD_STAT%B]%b"
     fi
