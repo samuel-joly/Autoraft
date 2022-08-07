@@ -10,7 +10,7 @@ main() {
     zstyle ':vcs_info:git:*' formats '%F{white}%r%f%F{red}@%f%b(%F{cyan}%S%f)'
     add-zsh-hook precmd prompt_precmd
 
-    #RPROMPT='%B%F{red}λ%f%b'
+#    RPROMPT='%B%F{red}λ%f%b'
     PROMPT=$'$CURRENT_PATH %B%F{yellow}>%f%b '
 }
 
@@ -32,10 +32,10 @@ prompt_git_diff_stat() {
 
     GD_STAT=""
     if [[ $GD_INS -gt 0 ]]; then
-        GD_STAT="$GD_STAT$GD_INS$GIT_PROMPT_LINE_ADDED"
+        GD_STAT+="$GD_INS$GIT_PROMPT_LINE_ADDED"
     fi
     if [[ $GD_DEL -gt 0 ]]; then
-        GD_STAT="$GD_STAT$GIT_PROMPT_LINE_REMOVED$GD_DEL"
+        GD_STAT+="$GD_DEL$GIT_PROMPT_LINE_REMOVED"
     fi
     if [[ ! -z $GD_STAT ]]; then
         echo "%B[%b$GD_STAT%B]%b"
@@ -63,8 +63,8 @@ prompt_git_state() {
     GIT_PROMPT_LINE_REMOVED="%B%F{red}⇣%f%b"
     GIT_PROMPT_UNTRACKED="%F{yellow}Untrk%f"
     GIT_PROMPT_ADDED="%F{green}Add%f"
-    #GIT_PROMPT_ADDED="%B%F{green}▲%f%b"
-    #GIT_PROMPT_MODIFIED="%F{blue}★%f"
+    GIT_PROMPT_ADDED="%B%F{green}▲%f%b"
+    GIT_PROMPT_MODIFIED="%F{blue}★%f"
     GIT_PROMPT_MODIFIED="%F{blue}Chng%f"
     #GIT_PROMPT_DELETED="%B%F{red}▼%f%b"
     #GIT_PROMPT_RENAMED="%F{magenta}↻%f"
@@ -93,6 +93,11 @@ prompt_git_state() {
             STATUS="$STATUS%B%F{green}%f%b$status_prompt[$j]%B(${commit_state[$j]:0:1})%b"
         fi
     done
+    DIFF_STAT=$(prompt_git_diff_stat)
+
+    if [[ ! -z $DIFF_STAT ]]; then
+      STATUS+="$(prompt_git_diff_stat)"
+    fi
 
     if [[ ! -z "$STATUS" ]]; then
         echo "$STATUS"
