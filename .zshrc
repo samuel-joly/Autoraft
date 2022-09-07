@@ -4,17 +4,17 @@
 autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
-#keyboard layout -- to move to somewhere more fundamental in Xorg"
+#keyboard layout -- #TODO move to somewhere closer to Xorg boot"
 setxkbmap -layout gb -option ctrl:nocaps
 
 export PATH="$PATH:/home/ruts/phpstorm/bin/"
+
+## WAT IS THIS
+# Shady stuff for work
 SSH_AUTH_SOCK=/tmp/ssh-XXXXXXDqnFX7/agent.145148;
 export SSH_AUTH_SOCK;
 SSH_AGENT_PID=145149;
 export SSH_AGENT_PID;
-
-# Aliases
-source "$XDG_CONFIG_HOME/aliases"
 
 source "$ZDOTDIR/autodaft/init.zsh"
 

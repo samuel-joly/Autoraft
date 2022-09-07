@@ -1,2 +1,9 @@
 export AUTODAFT_CACHE_HOME="$XDG_CACHE_HOME/zsh/autodaft"
 export AUTODAFT_SRC="$ZDOTDIR/autodaft"
+export CODEFOLD="/home/ruts/code/"
+export DEDIFOLD="/home/ruts/code/dedi"
+export SYMFOLD="/home/ruts/code/perso/symfony"
+export SYLFOLD="/home/ruts/code/perso/symfony/sylius"
+
+# Bat coloration for help and man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"

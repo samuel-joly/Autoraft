@@ -15,19 +15,22 @@ main() {
 }
 
 prompt_precmd() {
+#    start=`date +%s%N`
     GITSTAT=$(git status 2>/dev/null)
     CURRENT_PATH="%B%F{cyan}%~$f$b"
     if [[ ! -z "$vcs_info_msg_0_" ]]; then
         CURRENT_PATH="%B%F{cyan}$vcs_info_msg_0_%f%b"
         print -P '$(prompt_git_state)'
     fi
+#    end=`date +%s%N`
+#    echo Execution time was 0.000`expr $end - $start` second
 }
 
 prompt_git_diff_stat() {
     local STAT GD_INS GD_DEL GD_STAT
     STAT=$(git diff --shortstat)
-    GD_INS=$(echo "$STAT" | grep -Eo "[[:digit:]]+ insertion" | awk -F " " '{print $1}');
-    GD_DEL=$(echo "$STAT" | grep -Eo "[[:digit:]]+ deletion" | awk -F " " '{print $1}');
+    GD_INS=$(echo $STAT | grep -Eo "[[:digit:]]+ insertion" | awk -F " " '{print $1}');
+    GD_DEL=$(echo $STAT | grep -Eo "[[:digit:]]+ deletion" | awk -F " " '{print $1}');
 
 
     GD_STAT=""
