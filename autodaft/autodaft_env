@@ -4,6 +4,7 @@ export CODEFOLD="/home/ruts/code/"
 export DEDIFOLD="/home/ruts/code/dedi"
 export SYMFOLD="/home/ruts/code/perso/symfony"
 export SYLFOLD="/home/ruts/code/perso/symfony/sylius"
+export SESSION="/home/ruts/code/perso/vim_session"
 
 # Bat coloration for help and man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

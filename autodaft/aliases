@@ -13,7 +13,8 @@ alias h='bash -c $(history -n | fzf )'
 alias fzf='fzf -e --layout=reverse'
 
 # Pipe alias for pretty fzf<->bat display
-alias ffb='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
+alias ffb='fzf --preview "bat --style=numbers --color=always {}"'
+alias vimf='vim $(fzf --preview "bat --style=numbers --color=always {}")'
 
 ## RipGrep
 alias -g rgf=' --files-with-matches | fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
