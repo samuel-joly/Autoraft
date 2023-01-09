@@ -8,7 +8,7 @@ main() {
     zstyle ':vcs_info:git:*' formats '%F{white}%r%f%F{red}@%f%b(%F{cyan}%S%f)'
     add-zsh-hook precmd prompt_precmd
 
-    RPROMPT='%B%F{red}λ%f%b'
+#    RPROMPT='%B%F{red}λ%f%b'
     PROMPT=$'$CURRENT_PATH %B%F{yellow}>%f%b '
 }
 
