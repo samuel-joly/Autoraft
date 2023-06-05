@@ -1,13 +1,8 @@
 alias zxc='exec zsh'
 alias cl='clear'
-alias gco='git checkout'
-alias gl='git log'
-alias gr='git remote'
-alias grs='git remote show'
-alias glo='git log --pretty="oneline"'
-alias glol='git log --graph --oneline --decorate'
-alias gst='git status'
 alias h='bash -c $(history -n | fzf )'
+alias e='nvim'
+alias se='sudo nvim'
 
 ### FZF
 alias fzf='fzf -e --layout=reverse'
@@ -15,27 +10,30 @@ alias fzf='fzf -e --layout=reverse'
 # Pipe alias for pretty fzf<->bat display
 alias ffb='fzf --preview "bat --style=numbers --color=always {}"'
 alias vimf='vim $(fzf --preview "bat --style=numbers --color=always {}")'
+alias bat='bat --theme=OneHalfLight --color=always'
 
 ## Git
+alias gco='git checkout'
+alias gl='git log'
+alias gr='git remote'
+alias grs='git remote show'
+alias glo='git log --pretty="oneline"'
+alias glol='git log --graph --oneline --decorate'
+alias gst='git status'
 alias gcof='git branch -r | fzf --preview "git log --color=always  --pretty=\"oneline\" {1}"| xargs git checkout'
-alias glof='git log --oneline | fzf --preview "git show --color=always {1} | delta --width=$COLUMNS --keep-plus-minus-markers" --preview-window=down,90%'
+alias glof='git log --oneline | fzf --preview "git show {1} | delta --width=$COLUMNS --keep-plus-minus-markers" --preview-window=down,90%'
 alias gdf='git diff --name-only --relative | fzf --preview "git diff {}| delta --width=$COLUMNS --keep-plus-minus-markers" --preview-window=down,90%'
 alias gdcf='git diff --cached --name-only --relative| fzf --preview "bat --style=numbers --color=always --line-range :500 {}" --preview-window=down,90%'
 
 #TODO Create function for processing git status for untracked files and directory
 alias gstf='git status --porcelain | fzf --preview "bat --color=always  --terminal-width=$COLUMNS {2}" --preview-window=down,70%'
-#Fetch all remotes branches
-alias fr='for i in $(git for-each-ref --format=%(refname:short) --no-merged=origin/HEAD refs/remotes/origin); do  git switch --track $i; done'
 ##Docker
 alias std='sudo systemctl start docker'
 alias dst='docker ps --format="{{.ID}} {{.Names}}" | fzf --preview="docker inspect {1}"'
 alias dsx='docker exec -it $(docker ps --format "{{.Names}}"|fzf) bash'
 
 ### EXA
-alias ls='exa -lah'
-
-### BAT
-alias cat='bat'
+alias ls='exa -lh --color=always'
 
 ## Color for help menu
 alias -g c=' |bat -plhelp'
@@ -56,3 +54,5 @@ mkplaylist() {
   mkdir playlist;
   mv *.pl playlist;
 }
+
+alias pswg='~/scripts/pswdgen.pyw'
