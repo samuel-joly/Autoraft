@@ -5,7 +5,7 @@ autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
 #keyboard layout -- #TODO move to somewhere closer to Xorg boot"
-setxkbmap -layout gb -option ctrl:nocaps
+setxkbmap gb -option ctrl:nocaps
 
 source "$ZDOTDIR/autodaft/init.zsh"
 
