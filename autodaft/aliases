@@ -33,7 +33,7 @@ alias dst='docker ps --format="{{.ID}} {{.Names}}" | fzf --preview="docker inspe
 alias dsx='docker exec -it $(docker ps --format "{{.Names}}"|fzf) bash'
 
 ### EXA
-alias ls='exa -lh --color=always'
+alias ls='exa -lah --color=always'
 
 ## Color for help menu
 alias -g c=' |bat -plhelp'
