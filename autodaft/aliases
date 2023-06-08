@@ -3,6 +3,7 @@ alias cl='clear'
 alias h='bash -c $(history -n | fzf )'
 alias e='nvim'
 alias se='sudo nvim'
+alias cat='batcat'
 
 ### FZF
 alias fzf='fzf -e --layout=reverse'

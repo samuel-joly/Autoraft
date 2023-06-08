@@ -4,5 +4,3 @@ export CODEFOLD="/home/azefortwo/Code/"
 export SCRIPTS="/home/azefortwo/scripts"
 fpath=($ZDOTDIR/autodaft/completion $fpath)
 
-# Bat coloration for help and man pages
-export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=OneHalfLight'"

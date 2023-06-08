@@ -1,13 +1,4 @@
-#start=`date +%s%N`
-
-# Completion System
-autoload -U compinit; compinit
-_comp_options+=(globdots) # With hidden files
-
-#keyboard layout -- #TODO move to somewhere closer to Xorg boot"
-setxkbmap gb -option ctrl:nocaps
+# Bat coloration for help and man pages
+export MANPAGER="sh -c 'col -bx | batcat -l man -p --theme=OneHalfLight'"
 
 source "$ZDOTDIR/autodaft/init.zsh"
-
-#end=`date +%s%N`
-#echo Execution time was 0.000`expr $end - $start` second
