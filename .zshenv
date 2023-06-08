@@ -9,7 +9,10 @@ export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export ZCACHEDIR="$XDG_CACHE_HOME/zsh"
 
+export BAT_THEME="gruvbox-light"
+
 HISTFILE=$ZDOTDIR/histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
+. "/home/samuel/.config/cargo/env"
