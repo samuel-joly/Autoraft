@@ -5,4 +5,8 @@ export SCRIPTS="/home/azefortwo/scripts"
 fpath=($ZDOTDIR/autodaft/completion $fpath)
 
 # Bat coloration for help and man pages
-export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=OneHalfLight'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p --theme=OneHalfDark'"
+export MANROFFOPT="-c"
+
+export PATH="/usr/bin/npm:$PATH"
+export PATH="/home/azefortwo/tools/php-cs-fixer/vendor/bin/php-cs-fixer:$PATH"

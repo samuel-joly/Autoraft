@@ -1,3 +1,4 @@
+alias clock='timedatectl' 
 alias zxc='exec zsh'
 alias cl='clear'
 alias h='bash -c $(history -n | fzf )'
@@ -25,21 +26,34 @@ alias glof='git log --oneline | fzf --preview "git show {1} | delta --width=$COL
 alias gdf='git diff --name-only --relative | fzf --preview "git diff {}| delta --width=$COLUMNS --keep-plus-minus-markers" --preview-window=down,90%'
 alias gdcf='git diff --cached --name-only --relative| fzf --preview "bat --style=numbers --color=always --line-range :500 {}" --preview-window=down,90%'
 
-#TODO Create function for processing git status for untracked files and directory
 alias gstf='git status --porcelain | fzf --preview "bat --color=always  --terminal-width=$COLUMNS {2}" --preview-window=down,70%'
+
 ##Docker
 alias std='sudo systemctl start docker'
+alias dlo='docker ps --format="{{.ID}} {{.Names}}" | fzf --preview="docker logs {1}" --bind "enter:become(docker logs {1})"'
 alias dst='docker ps --format="{{.ID}} {{.Names}}" | fzf --preview="docker inspect {1}"'
 alias dsx='docker exec -it $(docker ps --format "{{.Names}}"|fzf) bash'
+alias drm='docker container rm $(docker container ls -qa); docker image rm $(docker image ls -qa);docker volume rm $(docker volume ls -q);'
+alias dup='docker compose up'
+alias ddown='docker compose down'
+alias dall='ddown;drm;dup'
+
+## MK web project builder
+alias mk='./mk'
+alias mkd='./mk docker'
+alias mkup='./mk docker up'
+alias mkdown='./mk docker down'
+alias mkrm='./mk docker rmall'
+alias mkreload='./mk docker rmall;./mk docker up'
 
 ### EXA
-alias ls='exa -lh --color=always'
+alias ls='eza -lh --color=always'
 
 ## Color for help menu
 alias -g c=' |bat -plhelp'
 
 ## RipGrep
-frg(){
+rg(){
   rg --column --line-number --smart-case --color=always --no-heading $1 | fzf --layout=reverse --bind 'change:reload:rg --column --line-number --smart-case --color=always --no-heading {q} || true' --ansi --disabled --query "$1"
 }
 
@@ -55,4 +69,9 @@ mkplaylist() {
   mv *.pl playlist;
 }
 
-alias pswg='~/scripts/pswdgen.pyw'
+
+alias bash_color='echo "PALETTE OF 8 COLORS (bold, high intensity, normal, faint)"
+for i in {30..37}; do printf "\e[1;${i}m1;%-2s      \e[m" "$i"; done; echo
+for i in {90..97}; do printf "\e[${i}m%+4s      \e[m" "$i"; done; echo
+for i in {30..37}; do printf "\e[${i}m%+4s      \e[m" "$i"; done; echo
+for i in {30..37}; do printf "\e[2;${i}m2;%-2s      \e[m" "$i"; done;'
