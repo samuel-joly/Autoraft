@@ -5,6 +5,9 @@ alias h='bash -c $(history -n | fzf )'
 alias e='nvim'
 alias se='sudo nvim'
 
+alias jsup='(npm run dev&)'
+alias kk="ps a -o pid= -o user= -o comm= | fzf --bind 'enter:become(kill {1})'"
+
 ### FZF
 alias fzf='fzf -e --layout=reverse'
 
